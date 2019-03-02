@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Clean Blog - Sample Post</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="index.html">Arzu'nun Blogu</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="index.html">AnaSayfa</a>
+                    </li>
+                    <li>
+                        <a href="about.html">Hakkimda</a>
+                    </li>
+                    <li>
+                        <a href="post.html">Ilk Blog Yazım</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Iletişim</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('img/home-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Facial Landmarks</h1>
+                        <h2 class="subheading">Dlib, OpenCV ve Python ile Facial Landmark</h2>
+                        <span class="meta">Posted by <a href="#">Arzu Yildiz</a> 02 Subat 2019</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+					<p> <b>Facial Landmarks'ın amacı önemli yüz yapılarını belirlemektir. </b></p>
+                    <p>Yüz isaretleri, yüzün en belirgin bölgelerini yerellestirmek ve temsil etmek için kullanilir. </p>
+                    <p>Örneğin;
+					<br>Gözler 
+					<br>Kaşlar 
+					<br>Burun 
+					<br>Ağız 
+					<br>Çene </p>
+                   
+					<p>Bugünün blog yayınında , aşağıdakiler dahil olmak üzere yüz işaretlerinin temellerine odaklanacağız  : 
+                    <br> <b>1)Yüz işaretleri nedir? Nasıl Çalışır? </h3>
+					<br><b>2)Dlib, OpenCV ve Python kullanarak bir görüntüdeki yüz işaretlerini nasıl algılanıp çıkarılır? </h3> </p>
+					
+	
+                    <h2 class="section-heading">1)Yüz işaretleri nedir? Nasıl Çalışır? </h2>
+
+                   <p>Yüz işaretlerini tespit etmek(detection facial landmarks),  şekil tahmin(shape prediction) probleminin bir  alt kümesidir . Bir giriş görüntüsü ele alınır ve şekil belirleyici şekil boyunca ilgilenilen kilit noktalarını belirlemeye çalışır. </p>
+                   
+					<a href="#">
+                        <img class="img-responsive" src="img/post-third.jpg" alt="">
+                    </a>
+                    <blockquote>Şekil 1: Yüz işaretleri, görüntüdeki ( kaynak ) anahtar yüz niteliklerini etiketlemek ve tanımlamak için kullanılır .</blockquote>
+
+                    <h4>Yüz işaretlerini tespit etmek bu nedenle iki aşamalı bir işlemdir: </h4>
+					<p> <h3>1.Adım: </h3> Görüntüdeki yüzün sınırlarını belirlemek </p>
+					<p><h3>2.Adım: </h3> ROI ile  yüzdeki anahtar yüz yapılarını tespit etmek </p>
+					
+					
+                    <h2 class="section-heading">2)Dlib, OpenCV ve Python kullanarak bir görüntüdeki yüz işaretlerini nasıl algılanıp çıkarılır?</h2>
+					
+					<h3>Yüz Tanıma </h3>
+					<p>OpenCV'nin Haar Cascade metodunu kullanabiliriz. </p>
+                    <p>Özellikle yüz tanıma görevi için önceden eğitilmiş bir <b>HOG + Linear SVM nesne dedektörü </b> uygulayabiliriz veya  yüz yerelleştirme için derin öğrenme temelli algoritmalar bile kullanabiliriz. </p>
+					<p>Dlib kütüphanesinde yer alan Facial Landmarks Detection, <b> Kazemi ve Sullivan (2014)</b> tarafından <b>Regresyon Ağaçları Topluluğu </b>ile Bir Milisaniye Yüz Hizalaması uygulamasıdır. </p>
+					<p>Bu yöntemin çalışma mantığı;</p>
+					<p>Yüz işaretlerinin görüntülerinden oluşan bir eğitim seti kullanılır.Bu görüntüler,  her yüz yapısını çevreleyen bölgelerin belirli (x, y) koordinatlarını belirterek yeni görüntüye eklenir.</p>
+					<p>Sonuç olarak Facial Landmarks, yüksek kaliteli tahminlerle gerçek zamanlı olarak  yüz işaretlerini tespit etmek  için kullanılabilecek bir yüz işareti dedektörüdür. </p>
+					
+					<a href="#">
+                        <img class="img-responsive" src="img/post-four.jpg" alt="">
+                    </a>
+					<blockquote>Şekil 2:68 yüz ölçüm koordinatını iBUG 300-W veri setinden görselleştirme </blockquote>
+					
+                    <a href="#">
+                        <img class="img-responsive" src="img/post-second.jpg" alt="">
+                    </a>
+					<blockquote>Şekil 3: Yüz Felci geçirmiş bir hastada test edilmiş Facial Landmarks algoritması başarılı bir şekilde yüz imgelerini tanımıştır.</blockquote>
+
+					
+                
+                    <p>Kitapları ile bize ilham olan <b> Adrian Rosebrock</b>'a Teşşekür ediyorum.</p>
+				</div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://github.com/yildizarzu">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+						<li>
+                            <a href="https://medium.com/@arzuyldz_26994">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-medium fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+<li>
+                            <a href="https://www.linkedin.com/in/arzu-y%C4%B1ld%C4%B1z-3b8994159/">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/arzu.yildiz8">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/arzu.yildiz8/">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; Arzu Yıldız Blog 2019</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
